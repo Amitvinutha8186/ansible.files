@@ -1,0 +1,27 @@
+---
+ - name: Creating user tester1
+   hosts: mynodes
+   become: yes
+   tasks:
+    - name: Create tester1 user
+      tags: always
+      user:
+        name: tester1
+        passwd: Ril@12345
+        group: root
+        uid: 1040
+    - name: Creating directory 
+      file:
+       name: /testcases
+       owner: tester1
+       state: present
+    - name: Creating file in /testcases
+      file:
+       name: /testcases/file1.txt
+       state: touch
+       mode: 660
+    - name: Copy contnt in file1   
+      Copy:
+       content: Hello All from ansible
+       dest: /testcases/file1.txt
+        

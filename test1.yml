@@ -1,0 +1,13 @@
+---
+ - name: Myfirst play to create files and directories
+   hosts: mynodes
+   become: yes
+   tasks: 
+       - name: "Creating directory projectX"
+         file: name="/projectX" state=directory
+       
+       - name: "Create file in projectX as txt file"
+         file: name="/projectX/file1.txt" state=touch mode=660
+    
+       - name: "Copy contents in the file"
+         copy: content="Helloooo all from Ansible Controller" dest="/projectX/file1.txt"

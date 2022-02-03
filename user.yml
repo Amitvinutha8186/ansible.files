@@ -1,0 +1,15 @@
+---
+- name: creating users in loop
+  hosts: mynodes
+  become: yes
+  tasks:
+    - name: adding uesrs
+      user:
+      name: "{{item.uname}}"
+      state: present
+      uid: "{{itm.id}}"
+      uhome: "{{item.uhome}}"
+- loop:
+     - {"uname":"Amit","uid":"6060","uhome":"/home/Amit"}
+     - {"uname":"Vinutha","uid":"7070","uhome":"/javaDeveloper"}
+     - {"uname":"Bhoomikka","uid":"8080","uhome":"/pythonDeveloper"}
